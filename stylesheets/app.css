@@ -1,0 +1,101 @@
+/* Artfully masterminded by ZURB  */
+
+/* -------------------------------------------------- 
+   Table of Contents
+-----------------------------------------------------
+:: Shared Styles
+:: Page Name 1
+:: Page Name 2
+*/
+
+
+/* -----------------------------------------
+   Shared Styles
+----------------------------------------- */
+@font-face {
+				font-family: 'Neubau-Bold';
+				src: url('neubausansbold.eot');
+				src: url('neubausansbold.eot?#iefix') format('embedded-opentype'),
+						 url('neubausansbold.woff') format('woff'),
+						 url('neubausansbold.ttf') format('truetype'),
+						 url('neubausansbold.svg#neubausansbold') format('svg');
+				font-weight: normal;
+				font-style: normal;
+		}
+@font-face {
+				font-family: 'Neubau';
+				src: url('neubausans.eot');
+				src: url('neubausans.eot?#iefix') format('embedded-opentype'),
+						 url('neubausans.woff') format('woff'),
+						 url('neubausans.ttf') format('truetype'),
+						 url('neubausans.svg#neubausans') format('svg');
+				font-weight: normal;
+				font-style: normal;
+		}
+		
+body {background: #f9e4bf; font-family: Neubau, arial, sans-serif;}
+#splash {background: url('../images/backgrounds/01.jpg') no-repeat; background-size:cover;}
+
+h1, h2, h3, h4, h5, h6 {font-family: Neubau-Bold, arial, sans-serif; TEXT-TRANSFORM; UPPERCASE;}
+hr {border: solid #000; border-width: 1px 0 0;}
+.hr2 {border: solid #000; border-width: 3px 0 0;}
+.noMargin {margin: 0px;}
+.noPadding {padding: 0px;}
+
+.nav-bar {min-height: 60px; background: none; margin-bottom: 20px; padding: 0; width: 940px; border-top: 3px solid #000; border-bottom: 1px solid #000;box-sizing:border-box;}
+.nav-bar > li {border: none;height: 60px;line-height:60px;}
+.nav-bar > li:nth-child(6), .nav-bar > li:last-child {border: none;}
+.nav-bar > li > a {color: #000000;font-size: 18px;font-family: Neubau-Bold, arial, sans-serif; TEXT-TRANSFORM; UPPERCASE;}
+.nav-bar > li > a:first-child {font-size: 17px; text-align: center;}
+.nav-bar > li.active {background:none; border-bottom: 7px solid #000; color:#000000;}
+.nav-bar > li.active > a {color:#000000;}
+.nav-bar > li.active > a:hover {background:none!important; color:#000000;}
+.nav-bar > li:hover {background:none!important; color:#000000; border-bottom: 7px solid #000;}
+@media only screen and (max-width: 767px){.nav-bar {width: 100%}}
+@media only screen and (min-width: 767px){.leftMenuBar {height:500px; box-sizing:border-box;}}
+
+.panel {background: none; border: none;}
+
+.homeLogo {margin: 60px auto 40px auto; text-align: center; width: 301px; height: 222px; display: block; background: url('../images/logos/collins-and-queen-apartments.png');} 
+.homeEntry {display: block; margin: 160px auto 0px auto; background: url('../images/logos/essendon-enter.png') no-repeat; height: 105px; width: 302px;}
+.homeFooterLogo {display: block; margin: 290px auto 40px auto; background: url('../images/logos/bpm.png') no-repeat; height: 45px; width: 107px;}
+
+.orbit-wrapper .slider-nav span {width: 39px; height: 39px; margin-top: -20px;}
+.orbit-wrapper .slider-nav span.right {margin-right: 10px; background: url('../images/foundation/orbit/right-arrow-small.png');}
+.orbit-wrapper .slider-nav span.left {margin-left: 10px; background: url('../images/foundation/orbit/left-arrow-small.png');}
+
+.logoHeader {margin: 60px auto 40px auto; text-align: center; width: 299px; height: 220px; display: block; background: url('../images/logos/collins-and-queen-essendon-dark.png');}
+.logoHeader h1, .logoHeader h2, .homeLogo h1, .homeLogo h2{visibility: hidden !important; display: block;}
+
+#subnav li {list-style: none;display:list-item} 
+
+#subnav li h5 a, .download h5 a {text-decoration: none; color: #000000;} 
+#subnav li h5 a:active, #subnav li h5 a:hover, .download h5 a:active, .download h5 a:hover {text-decoration: underline;} 
+
+.download h5 a {float: right; text-decoration: none; color: #000000; display: block; background: url('../images/icons/icon-download.png') no-repeat; height: 25px; line-height: 25px; padding-left: 30px} 
+
+
+.unitDetails {display: block; position:absolute; bottom: 0px;}
+
+@media screen and (min-width: 575px) and (max-width: 767px){.unitDetails {display: block; position:relative; margin-top: 30px;}}
+@media screen and (orientation: portrait){.unitDetails {display: block; position:relative; margin-top: 30px;}}
+@media screen and (orientation: portrait) and (max-width: 767px){#subnav li {display:inline-block;margin-left: 20px;}}
+@media screen and (max-width: 365px){.download h5 a {float: left;margin-left:20px}.homeEntry {background: url('../images/logos/essendon-enter-sml.png') no-repeat; height: 90px; width: 260px;}.homeLogo {width: 260px; height: 191px; background: url('../images/logos/collins-and-queen-apartments-sml.png');} .logoHeader {width: 260px; height: 191px; background: url('../images/logos/collins-and-queen-essendon-dark-sml.png');}.homeEntry {margin: 90px auto 0px auto;}
+.homeFooterLogo {margin: 90px auto 40px auto; }}
+
+.footer {margin: 0px auto 20px auto; padding: 0 10px; text-align: center; width: 100% display: block;}
+.footerLogo {display: block; margin: 20px auto 40px auto; background: url('../images/logos/bpm-dark.png') no-repeat; height: 45px; width: 107px;}
+
+
+/* -----------------------------------------
+   Page Name 1
+----------------------------------------- */
+
+
+
+
+/* -----------------------------------------
+   Page Name 2
+----------------------------------------- */
+
+
