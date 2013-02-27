@@ -7,7 +7,7 @@
 $( function () {
 	// Call Authentication service
 
-	var baseAuth = jcl.makeBaseAuth( 'john.cheesman@metroprop.com.au', 'cheesman' );
+	var baseAuth = jcl.makeBaseAuth( jcl.username, jcl.password );
 	var authOptions = {
 		type            : 'POST',
 		url             : jcl.authUrl,
@@ -37,7 +37,7 @@ $( function () {
 	amplify.subscribe('getListings',function() {
 		var listingOptions = {
 			type            : 'GET',
-			url             : jcl.listingsUrl,
+			url             : jcl.listingsUrl+jcl.queryString,
 			beforeSend      : function ( req ) {
 				req.setRequestHeader( 'Token', jcl.authToken );
 				req.setRequestHeader( 'SubscriberCode', jcl.subscriberCode );
@@ -80,8 +80,21 @@ $( function () {
 		jcl.processActiveLevel(jcl.activeLevel);
 	});
 
+	amplify.subscribe('imgLoadComplete',function() {
+		jcl.appendHtml(jcl.galleryContainer,jcl.galleryMarkup);
+		$("#featured").orbit({
+			afterLoadComplete: function() {
+				jcl.orbit = this;
+			}
+		});
+	});
 	// Initiating Orbit slider
-	$("#featured").orbit();
+
+//	$("#featured").orbit({
+//		afterLoadComplete: function() {
+//			jcl.orbit = this;
+//		}
+//	});
 
 
 } );

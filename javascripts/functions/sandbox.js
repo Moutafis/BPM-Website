@@ -12,6 +12,12 @@ var jcl = {
 	// Base Auth
 	makeBaseAuth      : null,
 
+	// Username
+	username: null,
+
+	// Password
+	password : null,
+
 	// Project ID
 	projectID         : null,
 
@@ -39,8 +45,11 @@ var jcl = {
 	// Default Level
 	findDefaultLevel  : null,
 
-	// Active level
+	// Active level object
 	activeLevel       : null,
+
+	// Active level label
+	activeLevelLabel  : null,
 
 	// Process Active Level
 	processActiveLevel: null,
@@ -57,8 +66,29 @@ var jcl = {
 	// Active listing
 	activeListing     : null,
 
-	// Construct Gallery
-	constructGallery  : null,
+	// Gallery container
+	galleryContainer  : null,
+
+	// Gallery Markup
+	galleryMarkup     : null,
+
+	// Append HTML to DOM
+	appendHtml : null,
+
+	// Preload Images
+	preloadImages     : null,
+
+	// Cached gallery images
+	imageCache        : null,
+
+	// Reference to the Orbit object
+	orbit             : null,
+
+	// Floorplate image path
+	floorplatePath : null,
+
+	// Floorplate image container
+	floorplateContainer : null,
 
 	// Show Loading screen
 	showLoading       : null,
@@ -74,11 +104,15 @@ var jcl = {
  JCL Config
  ==========
  */
+jcl.username = "john.cheesman@metroprop.com.au";
+
+jcl.password = "cheesman";
+
 jcl.projectID = 6;
 
 jcl.subscriberCode = 'METR';
 
-jcl.authUrl = 'http://fox-service/api.internal.brightfox.com.1/UserServiceReference.svc/v2/METR/User/Authenticate';
+jcl.authUrl = 'http://fox-service/api.internal.brightfox.com.1/UserServiceReference.svc/v2/User/Authenticate';
 
 jcl.listingsUrl = 'http://fox-service/api.internal.brightfox.com.1/ListingServiceReference.svc/v2/Projects/6/Listings?';
 
@@ -86,6 +120,11 @@ jcl.queryString = 'Bedrooms=0&PriceRangeBottom=0&PriceRangeTop=0&SalesStatus=1&N
 
 jcl.totalLevels = 7;
 
+jcl.galleryContainer = '#featured';
+
+jcl.floorplatePath = 'images/floorplates/';
+
+jcl.floorplateContainer = '#floorplate';
 
 /*
  ================
@@ -196,12 +235,77 @@ jcl.findDefaultLevel = function ( levelObject ) {
  ===============================
  This function takes active level as input and interacts with the DOM accordingly
  1. Create Slide show
- 2. Create the Image Map
+ 2. Create the level floorplate
+ 3. Create the Image Map
  */
 jcl.processActiveLevel = function ( activeLevel ) {
-	var imgArray = [];
-	var imageHtml = "";
+	var galleryImages = fetchGalleryImages( activeLevel );
+	var gallerySrc = galleryImages.gallerySrc;
+	jcl.preloadImages( gallerySrc );
+	jcl.galleryMarkup = galleryImages.galleryHtml.join( " " );
+
+	// Set the floorplate image here
+	setFloorplate(jcl.floorplatePath,jcl.activeLevelLabel,jcl.floorplateContainer);
+};
+
+
+/*
+ ======================
+ Pre-load Gallery images
+ ======================
+ */
+jcl.preloadImages = function ( imgArray ) {
+	jcl.imageCache = [];
+	var count = 0;
+	for (var i = 0; i < imgArray.length; i++) {
+		var imageObject = new Image();
+		imageObject.src = imgArray[i];
+		jcl.imageCache.push( imageObject.src );
+		$( imageObject ).on( 'load', function () {
+			++count;
+			if (count >= imgArray.length) {
+				console.log('imgLoadComplete fired');
+				amplify.publish( 'imgLoadComplete' );
+			}
+			else {
+				console.log( 'Still loading' );
+			}
+		} );
+	}
+};
+
+
+/*
+ ============
+ Apppend Html
+ ============
+ */
+ jcl.appendHtml = function(target,html) {
+	 $(target ).append(html);
+ };
+
+
+
+
+
+/* ############## PRIVATE METHODS ############## */
+
+/*
+ =================
+ Construct Gallery
+ =================
+ 1. Takes the activeLevel object as argument
+ 2. Loops through the listings in the level and extracts the floorplan images
+ 3. Pushes the images into a global cache
+ 4. Constructs an Img element for each image with the data-level and data-lotNo attributes for future reference.
+ 5. returns the HTML markup for gallery and the gallery images as an object
+ */
+function fetchGalleryImages( activeLevel ) {
+	var imgHtmlArray = [];
+	var imgSrcArray = [];
+	var imgHtml = "";
 	var activeLevelLabel = 'level' + activeLevel[0];
+	jcl.activeLevelLabel = activeLevelLabel;
 	var lotNo = "";
 	for (var i = 0; i < activeLevel.length; i++) {
 		if ((typeof activeLevel[i]) === 'object') {
@@ -210,29 +314,34 @@ jcl.processActiveLevel = function ( activeLevel ) {
 					for (var j = 0; j < activeLevel[i].Images.length; j++) {
 						if (activeLevel[i].Images[j].ImageSize == 2) {
 							lotNo = activeLevel[i].Property.LotNo;
-							imageHtml = "<img src='" + activeLevel[i].Images[j].URL + "' data-level='" + activeLevelLabel + "' data-lotno='" + lotNo + "' />"
-							imgArray.push( imageHtml );
+							imgHtml = "<img src='" + activeLevel[i].Images[j].URL + "' data-level='" + activeLevelLabel + "' data-lotNo='" + lotNo + "' />"
+							imgHtmlArray.push( imgHtml );
+							imgSrcArray.push( activeLevel[i].Images[j].URL );
 						}
 					}
 				}
 			}
 		}
 	}
-	imgArray = imgArray.join( " " );
-	jcl.constructGallery(imgArray,'#featured');
-};
+	return {
+		galleryHtml: imgHtmlArray,
+		gallerySrc : imgSrcArray
+	}
+}
+
 
 
 /*
- ====================================================================
- Construct the gallery and append the markup to the gallery container
- ====================================================================
+ =====================================================================
+ Set the level floorplate once we have a reference to the active level
+ =====================================================================
+ 1. Taks the path to flooplate image, level number and the container that holds it as arguments
  */
-jcl.constructGallery = function(imgArray,container) {
-//	$(container ).html(imgArray);
-//	$("#featured").orbit();
-};
-
+function setFloorplate(path,level,container) {
+	console.log(container);
+	console.log(path+level+'.png');
+	$(container ).find('img' ).attr('src',path+level+'.png');
+}
 
 
 /*
