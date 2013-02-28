@@ -96,11 +96,13 @@ $( function () {
 	} );
 
 	amplify.subscribe( 'imgLoadComplete', function () {
+		$(jcl.galleryContainer ).html('');
 		jcl.appendHtml( jcl.galleryContainer, jcl.galleryMarkup );
 		$( "#featured" ).orbit( {
 			afterLoadComplete: function () {
 				// Store a local reference to the orbit object so we can change the slides manually.
 				jcl.orbit = this;
+				jcl.orbit.startClock();
 			},
 			afterSlideChange : function () {
 				// Publish the slideChanged event so the floorplate image map can be updated
@@ -138,7 +140,7 @@ $( function () {
 	$('.levelChange' ).click(function(e) {
 		e.preventDefault();
 		var thisLevel = $(this ).attr('id');
-		jcl.orbit.stop();
+//		jcl.orbit.stopClock();
 		amplify.publish('listingsProcessed',thisLevel);
 	})
 

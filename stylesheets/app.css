@@ -8,94 +8,859 @@
 :: Page Name 2
 */
 
-
 /* -----------------------------------------
    Shared Styles
 ----------------------------------------- */
 @font-face {
-				font-family: 'Neubau-Bold';
-				src: url('neubausansbold.eot');
-				src: url('neubausansbold.eot?#iefix') format('embedded-opentype'),
-						 url('neubausansbold.woff') format('woff'),
-						 url('neubausansbold.ttf') format('truetype'),
-						 url('neubausansbold.svg#neubausansbold') format('svg');
-				font-weight: normal;
-				font-style: normal;
-		}
+    font-family: 'Neubau-Bold';
+    src: url('neubausansbold.eot');
+    src: url('neubausansbold.eot?#iefix') format('embedded-opentype'), url('neubausansbold.woff') format('woff'), url('neubausansbold.ttf') format('truetype'), url('neubausansbold.svg#neubausansbold') format('svg');
+    font-weight: normal;
+    font-style: normal;
+}
+
 @font-face {
-				font-family: 'Neubau';
-				src: url('neubausans.eot');
-				src: url('neubausans.eot?#iefix') format('embedded-opentype'),
-						 url('neubausans.woff') format('woff'),
-						 url('neubausans.ttf') format('truetype'),
-						 url('neubausans.svg#neubausans') format('svg');
-				font-weight: normal;
-				font-style: normal;
-		}
-		
-body {background: #f9e4bf; font-family: Neubau, arial, sans-serif;}
-#splash {background: url('../images/backgrounds/01.jpg') no-repeat; background-size:cover;}
+    font-family: 'Neubau';
+    src: url('neubausans.eot');
+    src: url('neubausans.eot?#iefix') format('embedded-opentype'), url('neubausans.woff') format('woff'), url('neubausans.ttf') format('truetype'), url('neubausans.svg#neubausans') format('svg');
+    font-weight: normal;
+    font-style: normal;
+}
 
-h1, h2, h3, h4, h5, h6 {font-family: Neubau-Bold, arial, sans-serif; TEXT-TRANSFORM; UPPERCASE;}
-hr {border: solid #000; border-width: 1px 0 0;}
-.hr2 {border: solid #000; border-width: 3px 0 0;}
-.noMargin {margin: 0px;}
-.noPadding {padding: 0px;}
+body {
+    background: #f9e4bf;
+    font-family: Neubau, arial, sans-serif;
+}
 
-.nav-bar {min-height: 60px; background: none; margin-bottom: 20px; padding: 0; width: 940px; border-top: 3px solid #000; border-bottom: 1px solid #000;box-sizing:border-box;}
-.nav-bar > li {border: none;height: 60px;line-height:60px;}
-.nav-bar > li:nth-child(6), .nav-bar > li:last-child {border: none;}
-.nav-bar > li > a {color: #000000;font-size: 18px;font-family: Neubau-Bold, arial, sans-serif; TEXT-TRANSFORM; UPPERCASE;}
-.nav-bar > li > a:first-child {font-size: 17px; text-align: center;}
-.nav-bar > li.active {background:none; border-bottom: 7px solid #000; color:#000000;}
-.nav-bar > li.active > a {color:#000000;}
-.nav-bar > li.active > a:hover {background:none!important; color:#000000;}
-.nav-bar > li:hover {background:none!important; color:#000000; border-bottom: 7px solid #000;}
-@media only screen and (max-width: 767px){.nav-bar {width: 100%}}
-@media only screen and (min-width: 767px){.leftMenuBar {height:500px; box-sizing:border-box;}}
+#bg01 {
+    background: #fdf2d2 url('images/bg_01.jpg') repeat-x 100% 100%;
+}
 
-.panel {background: none; border: none;}
+#bg02 {
+    background: #feeacc url('images/bg_02.jpg') repeat-x 100% 100%;
+}
 
-.homeLogo {margin: 60px auto 40px auto; text-align: center; width: 301px; height: 222px; display: block; background: url('../images/logos/collins-and-queen-apartments.png');} 
-.homeEntry {display: block; margin: 160px auto 0px auto; background: url('../images/logos/essendon-enter.png') no-repeat; height: 105px; width: 302px;}
-.homeFooterLogo {display: block; margin: 290px auto 40px auto; background: url('../images/logos/bpm.png') no-repeat; height: 45px; width: 107px;}
+#bg03 {
+    background: #f9eace url('images/bg_03.jpg') repeat-x 100% 100%;
+}
 
-.orbit-wrapper .slider-nav span {width: 39px; height: 39px; margin-top: -20px;}
-.orbit-wrapper .slider-nav span.right {margin-right: 10px; background: url('../images/foundation/orbit/right-arrow-small.png');}
-.orbit-wrapper .slider-nav span.left {margin-left: 10px; background: url('../images/foundation/orbit/left-arrow-small.png');}
+#bg04 {
+    background: #ededce url('images/bg_04.jpg') repeat-x 100% 100%;
+}
 
-.logoHeader {margin: 60px auto 40px auto; text-align: center; width: 299px; height: 220px; display: block; background: url('../images/logos/collins-and-queen-essendon-dark.png');}
-.logoHeader h1, .logoHeader h2, .homeLogo h1, .homeLogo h2{visibility: hidden !important; display: block;}
+#splash {
+    background: url('../images/backgrounds/01.jpg') no-repeat;
+    background-size: cover;
+}
 
-#subnav li {list-style: none;display:list-item} 
+h1, h2, h3, h4, h5, h6 {
+    font-family: Neubau-Bold, arial, sans-serif;
+    TEXT-TRANSFORM: UPPERCASE;
+}
 
-#subnav li h5 a, .download h5 a {text-decoration: none; color: #000000;} 
-#subnav li h5 a:active, #subnav li h5 a:hover, .download h5 a:active, .download h5 a:hover {text-decoration: underline;} 
+hr {
+    border: solid #000;
+    border-width: 1px 0 0;
+}
 
-.download h5 a {float: right; text-decoration: none; color: #000000; display: block; background: url('../images/icons/icon-download.png') no-repeat; height: 25px; line-height: 25px; padding-left: 30px} 
+.hr2 {
+    border: solid #000;
+    border-width: 3px 0 0;
+}
 
+.nav-bar {
+    min-height: 60px;
+    background: none;
+    margin-bottom: 20px;
+    padding: 0;
+    width: 940px;
+    border-top: 3px solid #000;
+    border-bottom: 1px solid #000;
+    box-sizing: border-box;
+}
 
-.unitDetails {display: block; position:absolute; bottom: 0px;}
+.nav-bar > li {
+    border: none;
+    height: 60px;
+    line-height: 60px;
+    box-shadow:none;
+}
 
-@media screen and (min-width: 575px) and (max-width: 767px){.unitDetails {display: block; position:relative; margin-top: 30px;}}
-@media screen and (orientation: portrait){.unitDetails {display: block; position:relative; margin-top: 30px;}}
-@media screen and (orientation: portrait) and (max-width: 767px){#subnav li {display:inline-block;margin-left: 20px;}}
-@media screen and (max-width: 365px){.download h5 a {float: left;margin-left:20px}.homeEntry {background: url('../images/logos/essendon-enter-sml.png') no-repeat; height: 90px; width: 260px;}.homeLogo {width: 260px; height: 191px; background: url('../images/logos/collins-and-queen-apartments-sml.png');} .logoHeader {width: 260px; height: 191px; background: url('../images/logos/collins-and-queen-essendon-dark-sml.png');}.homeEntry {margin: 90px auto 0px auto;}
-.homeFooterLogo {margin: 90px auto 40px auto; }}
+.nav-bar > li:nth-child(6), .nav-bar > li:last-child {
+    border: none;
+    box-shadow:none;
+}
 
-.footer {margin: 0px auto 20px auto; padding: 0 10px; text-align: center; width: 100% display: block;}
-.footerLogo {display: block; margin: 20px auto 40px auto; background: url('../images/logos/bpm-dark.png') no-repeat; height: 45px; width: 107px;}
+.nav-bar > li > a {
+    color: #000000;
+    font-size: 18px;
+    font-family: Neubau-Bold, arial, sans-serif;
+    TEXT-TRANSFORM: UPPERCASE;
+}
 
+.nav-bar > li > a:first-child {
+    font-size: 17px;
+    text-align: center;
+}
+
+.nav-bar > li.active {
+    background: none;
+    border-bottom: 7px solid #000;
+    color: #000000;
+}
+
+.nav-bar > li.active > a {
+    color: #000000;
+}
+
+.nav-bar > li.active > a:hover {
+    background: none !important;
+    color: #000000;
+}
+
+.nav-bar > li:hover {
+    background: none !important;
+    color: #000000;
+    border-bottom: 7px solid #000;
+}
+
+@media only screen and (max-width: 767px) {
+    .nav-bar {
+        width: 100%
+    }
+}
+
+@media only screen and (min-width: 767px) {
+    .leftMenuBar {
+        height: 500px;
+        box-sizing: border-box;
+    }
+}
+
+.panel {
+    background: none;
+    border: none;
+}
+
+.homeLogo {
+    margin: 60px auto 40px auto;
+    text-align: center;
+    width: 301px;
+    height: 222px;
+    display: block;
+    background: url('../images/logos/collins-and-queen-apartments.png');
+}
+
+.homeEntry {
+    display: block;
+    margin: 160px auto 0px auto;
+    background: url('../images/logos/essendon-enter.png') no-repeat;
+    height: 105px;
+    width: 302px;
+}
+
+.homeFooterLogo {
+    display: block;
+    margin: 290px auto 40px auto;
+    background: url('../images/logos/bpm.png') no-repeat;
+    height: 45px;
+    width: 107px;
+}
+
+.orbit-wrapper .slider-nav span {
+    width: 39px;
+    height: 39px;
+    margin-top: -20px;
+}
+
+.orbit-wrapper .slider-nav span.right {
+    margin-right: 10px;
+    background: url('../images/foundation/orbit/right-arrow-small.png');
+}
+
+.orbit-wrapper .slider-nav span.left {
+    margin-left: 10px;
+    background: url('../images/foundation/orbit/left-arrow-small.png');
+}
+
+.apartments .orbit-wrapper .slider-nav span.right {
+    margin-right: 10px;
+    background: url('../images/foundation/orbit/dark-right-arrow-small.png') no-repeat !important;
+}
+
+.apartments .orbit-wrapper .slider-nav span.left {
+    margin-left: 10px;
+    background: url('../images/foundation/orbit/dark-left-arrow-small.png') no-repeat !important;
+}
+
+.logoHeader {
+    margin: 60px auto 40px auto;
+    text-align: center;
+    width: 299px;
+    height: 220px;
+    display: block;
+    background: url('../images/logos/collins-and-queen-essendon-dark.png');
+}
+
+.logoHeader h1, .logoHeader h2, .homeLogo h1, .homeLogo h2 {
+    visibility: hidden !important;
+    display: block;
+}
+
+#subnav li {
+    list-style: none;
+    display: list-item
+}
+
+#subnav li h5 a, .download h5 a {
+    text-decoration: none;
+    color: #000000;
+}
+
+#subnav li h5 a:active, #subnav li h5 a:hover, .download h5 a:active, .download h5 a:hover {
+    text-decoration: underline;
+}
+
+.download h5 a {
+    float: right;
+    text-decoration: none;
+    color: #000000;
+    display: block;
+    background: url('../images/icons/icon-download.png') no-repeat;
+    height: 25px;
+    line-height: 25px;
+    padding-left: 30px;
+}
+
+.unitDetails {
+    display: block;
+    position: absolute;
+    bottom: 0px;
+}
+
+.footer {
+    margin: 0px auto 20px auto;
+    padding: 0 10px;
+    text-align: center;
+    width: 100%;
+    display: block;
+}
+
+.footerLogo {
+    display: block;
+    margin: 20px auto 40px auto;
+    background: url('../images/logos/bpm-dark.png') no-repeat;
+    height: 45px;
+    width: 107px;
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    list-style-type: none;
+}
 
 /* -----------------------------------------
-   Page Name 1
+   Contact
 ----------------------------------------- */
 
+.register {
+    margin-top: 60px;
+    -o-transition: .5s;
+    -ms-transition: .5s;
+    -moz-transition: .5s;
+    -webkit-transition: .5s;
+    transition: .5s;
+}
 
+.register:hover {
+    opacity: 0.6;
+    -webkit-transform: scale(1.1);
+    cursor: pointer;
+}
 
+.bpm {
+    margin-top: 290px;
+}
+
+.bpm-form {
+    margin: 0 auto 60px auto;
+    display: block;
+}
+
+.interest-form {
+    width: 100%; /* 816 */
+    background: url(/images/backgrounds/white-93-for-816x477.png);
+    margin: 0px;
+    padding: 0px;
+    float: left;
+}
+
+.thank-you {
+    margin: 60px 0px;
+
+}
+
+p.form-intro {
+    text-align: left;
+    padding-left: 90px;
+    margin-bottom: 1.0em;
+    /*padding-right: 355px;*/
+    width: 337px;
+    float: left;
+    font-family: Neubau-bold, arial, sans-serif;
+    text-transform: uppercase;
+    font-size: 1.2em;
+}
+
+label {
+    cursor: default;
+    font-size: 1.2em;
+    line-height: 32px;
+    color: #000000;
+    text-transform: uppercase;
+    font-family: Neubau-bold, arial, sans-serif;
+}
+
+.radiolabel   {
+    cursor: default;
+    font-size: 1.2em;
+    line-height: 32px;
+    color: #000000;
+    text-transform: uppercase;
+    font-family: Neubau-bold, arial, sans-serif;
+}
+
+.price {
+    font-family: Neubau, arial, sans-serif;
+    font-size: 1.8em;
+    text-transform: uppercase;
+    text-align: left;
+    padding-left: 427px;
+    padding-top: 15px;
+}
+
+#register {
+    padding: 5px;
+}
+
+form table input, textarea, select {
+    border: 1px solid #a6a8ab;
+    background: transparent;
+    padding: 6px 7px;
+    font-family: arial;
+    font-size: 1.0em;
+    color: #404041;
+}
+
+textarea {
+    font-size: .9em;
+    height: 75px;
+    margin-bottom: 7px;
+    vertical-align: top;
+    transition: height 0.2s;
+    -webkit-transition: height 0.2s;
+    -moz-transition: height 0.2s;
+    background: #fff;
+}
+
+td {
+    overflow: hidden;
+}
+
+select {
+    /*width: 305px;*/
+    margin-bottom: 7px;
+    background: #fff url(../images/select-btn.png) no-repeat 100% 0px;
+    border-radius: 0;
+    padding: 2px 0 0 5px;
+    -webkit-appearance: none;
+    height: 29px;
+    float: left;
+    line-height: 1;
+}
+
+#name, #lastname {
+    float: left;
+}
+
+#name {
+    margin-right: 7px;
+}
+
+#email, #phone {
+}
+
+#postcode {
+    width: 80px;
+}
+
+.mandatory {
+    float: right;
+    text-align: right;
+    width: 150px;
+    text-transform: uppercase;
+    font-size: .7em;
+}
+
+input.button {
+    width: 100px;
+    background-color: #404040;
+    color: #fff;
+    font-family: Neubau-Bold, arial, sans-serif;
+    text-transform: uppercase;
+    font-size: 1.2em;
+    line-height: 1.55;
+    padding-top: 2px;
+    padding-bottom: 2px;
+    border: none;
+}
+
+.button:hover, .button:focus {
+    color: #fff;
+    background-color: #000;
+    border: none;
+}
+
+.caps {
+    text-transform: uppercase;
+}
+
+.error {
+    color: #ce0000;
+    display: none;
+    margin-bottom: 7px;
+}
+
+/* Layout helpers
+----------------------------------*/
+.ui-helper-hidden {
+    display: none;
+}
+
+.ui-helper-hidden-accessible {
+    border: 0;
+    clip: rect(0 0 0 0);
+    height: 1px;
+    margin: -1px;
+    overflow: hidden;
+    padding: 0;
+    position: absolute;
+    width: 1px;
+}
+
+.ui-helper-reset {
+    margin: 0;
+    padding: 0;
+    border: 0;
+    outline: 0;
+    line-height: 1.3;
+    text-decoration: none;
+    font-size: 100%;
+    list-style: none;
+}
+
+.ui-helper-clearfix:before, .ui-helper-clearfix:after {
+    content: "";
+    display: table;
+}
+
+.ui-helper-clearfix:after {
+    clear: both;
+}
+
+.ui-helper-clearfix {
+    zoom: 1;
+}
+
+.ui-helper-zfix {
+    width: 100%;
+    height: 100%;
+    top: 0;
+    left: 0;
+    position: absolute;
+    opacity: 0;
+    filter: Alpha(Opacity=0);
+}
+
+/* Interaction Cues
+----------------------------------*/
+.ui-state-disabled {
+    cursor: default !important;
+}
+
+/* Icons
+----------------------------------*/
+
+/* states and images */
+.ui-icon {
+    display: block;
+    text-indent: -99999px;
+    overflow: hidden;
+    background-repeat: no-repeat;
+}
+
+/* Misc visuals
+----------------------------------*/
+
+/* Overlays */
+.ui-widget-overlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+}
+
+.ui-button {
+    display: inline-block;
+    position: relative;
+    padding: 0;
+    margin-right: .1em;
+    cursor: pointer;
+    text-align: center;
+    zoom: 1;
+    overflow: visible;
+}
+
+/* the overflow property removes extra width in IE */
+.ui-button, .ui-button:link, .ui-button:visited, .ui-button:hover, .ui-button:active {
+    text-decoration: none;
+}
+
+.ui-button-icon-only {
+    width: 2.2em;
+}
+
+/* to make room for the icon, a width needs to be set here */
+button.ui-button-icon-only {
+    width: 2.4em;
+}
+
+/* button elements seem to need a little more width */
+.ui-button-icons-only {
+    width: 3.4em;
+}
+
+button.ui-button-icons-only {
+    width: 3.7em;
+}
+
+/*button text element */
+.ui-button .ui-button-text {
+    display: block;
+    line-height: 1.0;
+}
+
+.ui-button-text-only .ui-button-text {
+    padding: .4em 1em;
+    font-size: 1.2em;
+}
+
+.ui-button-icon-only .ui-button-text, .ui-button-icons-only .ui-button-text {
+    padding: .4em;
+    text-indent: -9999999px;
+}
+
+.ui-button-text-icon-primary .ui-button-text, .ui-button-text-icons .ui-button-text {
+    padding: .4em 1em .4em 2.1em;
+}
+
+.ui-button-text-icon-secondary .ui-button-text, .ui-button-text-icons .ui-button-text {
+    padding: .4em 2.1em .4em 1em;
+}
+
+.ui-button-text-icons .ui-button-text {
+    padding-left: 2.1em;
+    padding-right: 2.1em;
+}
+
+/* no icon support for input elements, provide padding by default */
+input.ui-button {
+    padding: .4em 1em;
+}
+
+/*button icon element(s) */
+.ui-button-icon-only .ui-icon, .ui-button-text-icon-primary .ui-icon, .ui-button-text-icon-secondary .ui-icon, .ui-button-text-icons .ui-icon, .ui-button-icons-only .ui-icon {
+    position: absolute;
+    top: 50%;
+    margin-top: -8px;
+}
+
+.ui-button-icon-only .ui-icon {
+    left: 50%;
+    margin-left: -8px;
+}
+
+.ui-button-text-icon-primary .ui-button-icon-primary, .ui-button-text-icons .ui-button-icon-primary, .ui-button-icons-only .ui-button-icon-primary {
+    left: .5em;
+}
+
+.ui-button-text-icon-secondary .ui-button-icon-secondary, .ui-button-text-icons .ui-button-icon-secondary, .ui-button-icons-only .ui-button-icon-secondary {
+    right: .5em;
+}
+
+.ui-button-text-icons .ui-button-icon-secondary, .ui-button-icons-only .ui-button-icon-secondary {
+    right: .5em;
+}
+
+/*button sets*/
+.ui-buttonset .ui-button {
+    margin-left: 0;
+    margin-bottom: 7px !important;
+}
+
+/* workarounds */
+button.ui-button::-moz-focus-inner {
+    border: 0;
+    padding: 0;
+}
+
+/* reset extra padding in Firefox */
+
+/* Component containers
+----------------------------------*/
+.ui-widget {
+    font-family: Neubau-Bold, arial, sans-serif;
+    font-size: 1.0em;
+}
+
+.ui-widget .ui-widget {
+    font-size: 1em;
+}
+
+.ui-widget input, .ui-widget select, .ui-widget textarea, .ui-widget button {
+    font-family: Neubau-Bold, arial, sans-serif;
+    font-size: 1em;
+}
+
+.ui-widget-content {
+    border: 1px solid #aaaaaa;
+    background: #ffffff 50% 50% repeat-x;
+    color: #222222;
+}
+
+.ui-widget-content a {
+    color: #222222;
+}
+
+.ui-widget-header {
+    border: 1px solid #aaaaaa;
+    background: #a6a8ab 50% 50% repeat-x;
+    color: #222222;
+    font-weight: bold;
+}
+
+.ui-widget-header a {
+    color: #222222;
+}
+
+/* Interaction states
+----------------------------------*/
+.ui-state-default, .ui-widget-content .ui-state-default, .ui-widget-header .ui-state-default {
+    border: 1px solid #000;
+    background: #a6a8ab 50% 50% repeat-x;
+    font-weight: normal;
+    color: #ffffff;
+}
+
+.ui-state-default a, .ui-state-default a:link, .ui-state-default a:visited {
+    color: #ffffff;
+    text-decoration: none;
+}
+
+.ui-state-hover, .ui-widget-content .ui-state-hover, .ui-widget-header .ui-state-hover, .ui-state-focus, .ui-widget-content .ui-state-focus, .ui-widget-header .ui-state-focus {
+    border: 1px solid #;
+    background: #a6a8ab 50% 50% repeat-x;
+    font-weight: normal;
+    color: #ffffff;
+}
+
+.ui-state-hover a, .ui-state-hover a:hover, .ui-state-hover a:link, .ui-state-hover a:visited {
+    color: #ffffff;
+    text-decoration: none;
+}
+
+.ui-state-active, .ui-widget-content .ui-state-active, .ui-widget-header .ui-state-active {
+    border: 1px solid #;
+    background: #6d6e70 50% 50% repeat-x;
+    font-weight: normal;
+    color: #ffffff;
+}
+
+.ui-state-active a, .ui-state-active a:link, .ui-state-active a:visited {
+    color: #ffffff;
+    text-decoration: none;
+}
+
+/* Interaction Cues
+----------------------------------*/
+.ui-state-highlight, .ui-widget-content .ui-state-highlight, .ui-widget-header .ui-state-highlight {
+    border: 1px solid #fcefa1;
+    background: #fbf9ee 50% 50% repeat-x;
+    color: #363636;
+}
+
+.ui-state-highlight a, .ui-widget-content .ui-state-highlight a, .ui-widget-header .ui-state-highlight a {
+    color: #363636;
+}
+
+.ui-state-error, .ui-widget-content .ui-state-error, .ui-widget-header .ui-state-error {
+    border: 1px solid #cd0a0a;
+    background: #fef1ec 50% 50% repeat-x;
+    color: #cd0a0a;
+}
+
+.ui-state-error a, .ui-widget-content .ui-state-error a, .ui-widget-header .ui-state-error a {
+    color: #cd0a0a;
+}
+
+.ui-state-error-text, .ui-widget-content .ui-state-error-text, .ui-widget-header .ui-state-error-text {
+    color: #cd0a0a;
+}
+
+.ui-priority-primary, .ui-widget-content .ui-priority-primary, .ui-widget-header .ui-priority-primary {
+    font-weight: bold;
+}
+
+.ui-priority-secondary, .ui-widget-content .ui-priority-secondary, .ui-widget-header .ui-priority-secondary {
+    opacity: .7;
+    filter: Alpha(Opacity=70);
+    font-weight: normal;
+}
+
+.ui-state-disabled, .ui-widget-content .ui-state-disabled, .ui-widget-header .ui-state-disabled {
+    opacity: .35;
+    filter: Alpha(Opacity=35);
+    background-image: none;
+}
+
+.ui-state-disabled .ui-icon {
+    filter: Alpha(Opacity=35);
+}
+
+/* For IE8 - See #6059 */
+
+.third {
+    width: 100%;
+    margin-right: 0px;
+}
+
+.half {
+    width: 100%;
+    margin: 0px;
+}
+
+.samerow {
+    margin-top: 7px;
+    margin-left: 1px;
+}
+
+.ui-corner-all, .ui-corner-top, .ui-corner-right, .ui-corner-tr, .ui-corner-left, .ui-corner-tl, .ui-state-default {
+    border-radius: 0px/*{cornerRadius}*/;
+    border: none;
+}
 
 /* -----------------------------------------
-   Page Name 2
+   overrides
 ----------------------------------------- */
 
+.noMargin {
+    margin: 0px;
+}
 
+.noPadding {
+    padding: 0px !important;
+}
+
+.noPadding-right {
+    padding-right: 0px !important;
+}
+
+@media screen and (min-width: 575px) and (max-width: 767px) {
+    .unitDetails {
+        display: block;
+        position: relative;
+        margin-top: 30px;
+    }
+
+    .ui-buttonset {
+        margin-right: 0px;
+    }
+
+    .noPadding-right {
+        padding-right: 6px !important;
+    }
+}
+
+@media screen and (orientation: portrait) {
+    .unitDetails {
+        display: block;
+        position: relative;
+        margin-top: 30px;
+    }
+
+    .ui-buttonset .columns {
+        margin-right: 0px;
+    }
+
+    .noPadding-right {
+        padding-right: 6px !important;
+    }
+}
+
+@media screen and (orientation: portrait) and (max-width: 767px) {
+    #subnav li {
+        display: inline-block;
+        margin-left: 20px;
+    }
+
+    .ui-buttonset {
+        margin-right: 0px;
+    }
+
+    .noPadding-right {
+        padding-right: 6px !important;
+    }
+}
+
+@media screen and (max-width: 365px) {
+    .download h5 a {
+        float: left;
+        margin-left: 20px
+    }
+
+    .homeEntry {
+        background: url('../images/logos/essendon-enter-sml.png') no-repeat;
+        height: 90px;
+        width: 260px;
+    }
+
+    .homeLogo {
+        width: 260px;
+        height: 191px;
+        background: url('../images/logos/collins-and-queen-apartments-sml.png');
+    }
+
+    .logoHeader {
+        width: 260px;
+        height: 191px;
+        background: url('../images/logos/collins-and-queen-essendon-dark-sml.png');
+    }
+
+    .homeEntry {
+        margin: 90px auto 0px auto;
+    }
+
+    .homeFooterLogo {
+        margin: 90px auto 40px auto;
+    }
+
+    .ui-buttonset {
+        margin-right: 0px;
+    }
+
+    .noPadding-right {
+        padding-right: 6px !important;
+    }
+}

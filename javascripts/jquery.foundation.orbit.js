@@ -22,7 +22,7 @@
 		defaults: {
 			animation                : 'horizontal-push',     // fade, horizontal-slide, vertical-slide, horizontal-push, vertical-push
 			animationSpeed           : 600,              // how fast animations are
-			timer                    : true,                      // display timer?
+			timer                    : false,                      // display timer?
 			advanceSpeed             : 6000,               // if timer is enabled, time between transitions
 			pauseOnHover             : false,              // if you hover pauses the slider
 			startClockOnMouseOut     : false,      // if clock should start on MouseOut
