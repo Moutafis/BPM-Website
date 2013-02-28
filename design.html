@@ -13,16 +13,22 @@
 
     <title>Welcome to Foundation</title>
 
-    <!-- Included CSS Files (Uncompressed) -->
-    <!--
-    <link rel="stylesheet" href="stylesheets/foundation.css">
-    -->
-
-    <!-- Included CSS Files (Compressed) -->
     <link rel="stylesheet" href="stylesheets/foundation.min.css">
     <link rel="stylesheet" href="stylesheets/app.css">
-
+    <script src="javascripts/jquery-1.9.1.js"></script>
+    <script src="javascripts/jquery-migrate-1.1.0.js"></script>
     <script src="javascripts/modernizr.foundation.js"></script>
+    <script src="javascripts/amplify.js"></script>
+    <script src="javascripts/jquery.maphilight.js"></script>
+    <script src="javascripts/foundation.min.js"></script>
+    <script src="javascripts/jquery.foundation.orbit.js"></script>
+    <script src="javascripts/base64-encoder.js"></script>
+
+    <style>
+        #featured img {
+            /*display: none;*/
+        }
+    </style>
 </head>
 <body id="bg01">
 
@@ -41,7 +47,7 @@
             <li><a href="location.html">LOCATION</a></li>
             <li><a href="lifestyle.html">LIFESTYLE</a></li>
             <li><a href="register.html">REGISTER</a></li>
-            <li><a href="latest.html">C&Q LATEST</a></li>
+            <li><a href="#">C&Q LATEST</a></li>
             <li><a href="contact.html">CONTACT</a></li>
             <li><a href="aboutBPM.html">ABOUT BPM</a></li>
         </ul>
@@ -52,19 +58,19 @@
         <div class="panel leftMenuBar">
             <ul id="subnav">
                 <li>
-                    <h5><a href="#">EXTERIOR</a></h5>
+                    <h5><a href="#" class="galleryControl" data-images='[{"path":"../images/designs/exterior01.jpg"},{"path":"../images/designs/exterior02.jpg"}]'>EXTERIOR</a></h5>
                 </li>
                 <li>
-                    <h5>KITCHEN</h5>
+                    <h5><a href="#" class="galleryControl" data-images='[{"path":"../images/designs/kitchen01.jpg"},{"path":"../images/designs/kitchen02.jpg"}]'>KITCHEN</a></h5>
                 </li>
                 <li>
-                    <h5>LIVING</h5>
+                    <h5><a href="#" class="galleryControl" data-images='[{"path":"../images/designs/living01.jpg"}]'>LIVING</a></h5>
                 </li>
                 <li>
-                    <h5>BATHROOM</h5>
+                    <h5><a href="#" class="galleryControl" data-images='[{"path":"../images/designs/bathroom01.jpg"},{"path":"../images/designs/bathroom02.jpg"}]'>BATHROOM</a></h5>
                 </li>
                 <li>
-                    <h5>FOYER</h5>
+                    <h5><a href="#" class="galleryControl" data-images='[{"path":"../images/designs/foyer01.jpg"},{"path":"../images/designs/foyer02.jpg"}]'>FOYER</a></h5>
                 </li>
             </ul>
         </div>
@@ -72,9 +78,9 @@
     <div class="nine columns noPadding">
         <div class="panel noMargin noPadding">
             <div id="featured" class="noPadding">
-                <img src="holder.js/800x600/text:Slide_1" alt="slide image">
-                <img src="holder.js/800x600/text:Slide_2" alt="slide image">
-                <img src="holder.js/800x600/text:Slide_3" alt="slide image">
+                <!--<img src="holder.js/800x600/text:Slide_1" alt="slide image">-->
+                <!--<img src="holder.js/800x600/text:Slide_2" alt="slide image">-->
+                <!--<img src="holder.js/800x600/text:Slide_3" alt="slide image">-->
             </div>
 
         </div>
@@ -94,22 +100,14 @@
 </div>
 
 
-<!-- Included JS Files (Uncompressed) -->
-<!--
-<script src="javascripts/jquery.js"></script><script src="javascripts/jquery.foundation.mediaQueryToggle.js"></script><script src="javascripts/jquery.foundation.forms.js"></script><script src="javascripts/jquery.foundation.reveal.js"></script><script src="javascripts/jquery.foundation.orbit.js"></script><script src="javascripts/jquery.foundation.navigation.js"></script><script src="javascripts/jquery.foundation.buttons.js"></script><script src="javascripts/jquery.foundation.tabs.js"></script><script src="javascripts/jquery.foundation.tooltips.js"></script><script src="javascripts/jquery.foundation.accordion.js"></script><script src="javascripts/jquery.placeholder.js"></script><script src="javascripts/jquery.foundation.alerts.js"></script><script src="javascripts/jquery.foundation.topbar.js"></script><script src="javascripts/jquery.foundation.joyride.js"></script><script src="javascripts/jquery.foundation.clearing.js"></script><script src="javascripts/jquery.foundation.magellan.js"></script>
--->
-
-<!-- Included JS Files (Compressed) -->
-<script src="javascripts/jquery.js"></script>
-<script src="javascripts/foundation.min.js"></script>
-
 <!-- Initialize JS Plugins -->
 <script src="javascripts/app.js"></script>
-
+<script src="javascripts/functions/sandbox.js"></script>
 
 <script>
     $(window).load(function () {
-        $("#featured").orbit();
+        jcl.customGallery('.galleryControl');
+        $('.galleryControl').eq(0).trigger('click');
     });
 </script>
 

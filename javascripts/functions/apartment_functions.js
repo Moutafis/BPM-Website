@@ -72,8 +72,13 @@ $( function () {
 	amplify.subscribe( 'listingsReady', function () {
 		// Now that the listings are ready, process the listings
 		jcl.processedListings = jcl.processListings( jcl.listings );
+		amplify.publish('setLevelStatus');
 		amplify.publish( 'listingsProcessed' );
 	} );
+
+	amplify.subscribe('setLevelStatus',function() {
+
+	});
 
 	amplify.subscribe( 'listingsProcessed', function (thisLevel) {
 		if(jcl.firstRun) {
@@ -115,12 +120,12 @@ $( function () {
 	} );
 
 	amplify.subscribe( 'slideChanged', function () {
-		var activeLot = $('.orbit-slide.active' ).attr('data-lotNo');
-		$('map' ).remove();
-		$('body' ).append('<map id="levelMap" name="levelMap"></map>');
-		$('#levelMap' ).append(jcl.areaCache);
-		$("area[data-lotNo ="+activeLot+" ]" ).attr('data-maphilight',jcl.mapHilight.lightHilight);
-		$('.levelMap').maphilight();
+//		var activeLot = $('.orbit-slide.active' ).attr('data-lotNo');
+//		$('map' ).remove();
+//		$('body' ).append('<map id="levelMap" name="levelMap"></map>');
+//		$('#levelMap' ).append(jcl.areaCache);
+//		$("area[data-lotNo ="+activeLot+" ]" ).attr('data-maphilight',jcl.mapHilight.lightHilight);
+//		$('.levelMap').maphilight();
 
 	} );
 
