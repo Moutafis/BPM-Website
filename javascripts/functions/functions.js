@@ -24,20 +24,25 @@ $( function () {
 	jcl.dataManager( authOptions );
 
 	amplify.subscribe( 'authSuccess', function ( response ) {
-		var token = response.jqXHR.getResponseHeader('Token');
+		var token = response.jqXHR.getResponseHeader( 'Token' );
+
+		// Firefox provides the accessToken in the response directly instead of the responseHeader.
+		if(!token) {
+			token = response.data.AuthenticationToken.AccessToken;
+		}
 		jcl.authToken = token;
-		console.log('Token: '+token);
-		amplify.publish('getListings');
+		console.log( 'Token: ' + token );
+		amplify.publish( 'getListings' );
 	} );
 
 	amplify.subscribe( 'authError', function ( response ) {
 		console.log( response.errorThrown );
 	} );
 
-	amplify.subscribe('getListings',function() {
+	amplify.subscribe( 'getListings', function () {
 		var listingOptions = {
 			type            : 'GET',
-			url             : jcl.listingsUrl+jcl.queryString,
+			url             : jcl.listingsUrl + jcl.queryString,
 			beforeSend      : function ( req ) {
 				req.setRequestHeader( 'Token', jcl.authToken );
 				req.setRequestHeader( 'SubscriberCode', jcl.subscriberCode );
@@ -45,57 +50,97 @@ $( function () {
 			successEventName: 'listingsSuccess',
 			errorEventName  : 'listingsError'
 		};
-		jcl.dataManager(listingOptions);
-	});
+		jcl.dataManager( listingOptions );
+	} );
 
-	amplify.subscribe('listingsSuccess',function(response) {
+	amplify.subscribe( 'listingsSuccess', function ( response ) {
 		// Caching the listings data
-		jcl.listings = response.data;
-		amplify.publish('listingsReady');
-	});
-
-	amplify.subscribe('listingsError',function(response) {
-		console.log(response.errorThrown);
-	});
-
-	amplify.subscribe('listingsReady',function() {
-		// Now that the listings are ready, process the listings
-		jcl.processedListings = jcl.processListings(jcl.listings);
-		amplify.publish('listingsProcessed');
-	});
-
-	amplify.subscribe('listingsProcessed',function() {
-		jcl.activeLevel = jcl.findDefaultLevel(jcl.processedListings);
-
-		if(jcl.activeLevel) {
-			// Now that we have the active level, work on this object to update the DOM
-			amplify.publish('processActiveLevel');
+		// Firefox doesn't parse the response automatically as Chrome and Safari do.
+		if(typeof response.data === 'string') {
+			jcl.listings = JSON.parse(response.data);
 		}
 		else {
-			amplify.publish('errorActiveLevel');
+			jcl.listings = response.data;
 		}
-	});
+		amplify.publish( 'listingsReady' );
+	} );
 
-	amplify.subscribe('processActiveLevel',function() {
-		jcl.processActiveLevel(jcl.activeLevel);
-	});
+	amplify.subscribe( 'listingsError', function ( response ) {
+		console.log( response.errorThrown );
+	} );
 
-	amplify.subscribe('imgLoadComplete',function() {
-		jcl.appendHtml(jcl.galleryContainer,jcl.galleryMarkup);
-		$("#featured").orbit({
-			afterLoadComplete: function() {
+	amplify.subscribe( 'listingsReady', function () {
+		// Now that the listings are ready, process the listings
+		jcl.processedListings = jcl.processListings( jcl.listings );
+		amplify.publish( 'listingsProcessed' );
+	} );
+
+	amplify.subscribe( 'listingsProcessed', function (thisLevel) {
+		if(jcl.firstRun) {
+			jcl.activeLevel = jcl.findActiveLevel( jcl.processedListings );
+		}
+		else {
+			jcl.activeLevel = jcl.findActiveLevel( jcl.processedListings, thisLevel );
+		}
+		if (jcl.activeLevel) {
+			// Now that we have the active level, work on this object to update the DOM
+			amplify.publish( 'processActiveLevel' );
+		}
+		else {
+			amplify.publish( 'errorActiveLevel' );
+		}
+	} );
+
+	amplify.subscribe( 'processActiveLevel', function () {
+		jcl.processActiveLevel( jcl.activeLevel );
+	} );
+
+	amplify.subscribe( 'imgLoadComplete', function () {
+		jcl.appendHtml( jcl.galleryContainer, jcl.galleryMarkup );
+		$( "#featured" ).orbit( {
+			afterLoadComplete: function () {
+				// Store a local reference to the orbit object so we can change the slides manually.
 				jcl.orbit = this;
+			},
+			afterSlideChange : function () {
+				// Publish the slideChanged event so the floorplate image map can be updated
+				amplify.publish( 'slideChanged' );
 			}
-		});
-	});
-	// Initiating Orbit slider
+		} );
 
-//	$("#featured").orbit({
-//		afterLoadComplete: function() {
-//			jcl.orbit = this;
-//		}
-//	});
+//		$('#levelMap' ).find('area' ).attr('data-maphilight',jcl.mapHilight.lightHilight);
+//		$('.levelMap' ).maphilight();
+	} );
 
+	amplify.subscribe( 'slideChanged', function () {
+		var activeLot = $('.orbit-slide.active' ).attr('data-lotNo');
+		$('map' ).remove();
+		$('body' ).append('<map id="levelMap" name="levelMap"></map>');
+		$('#levelMap' ).append(jcl.areaCache);
+		$("area[data-lotNo ="+activeLot+" ]" ).attr('data-maphilight',jcl.mapHilight.lightHilight);
+		$('.levelMap').maphilight();
+
+	} );
+
+	$( document ).on( 'click', 'area', function ( e ) {
+		e.preventDefault();
+		var lotNo = $( this ).attr('data-lotNo');
+		var index = $( this ).attr('data-index');
+
+		// Sync the gallery slide with the clicked area
+		jcl.syncSlides(index);
+
+		// Add an active class to the currently selected hotspot
+		$('area' ).removeClass('active' );
+		$(this ).addClass('active');
+	} );
+
+	$('.levelChange' ).click(function(e) {
+		e.preventDefault();
+		var thisLevel = $(this ).attr('id');
+		jcl.orbit.stop();
+		amplify.publish('listingsProcessed',thisLevel);
+	})
 
 } );
 

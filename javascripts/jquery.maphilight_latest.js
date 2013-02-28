@@ -2,8 +2,16 @@
 	var has_VML, has_canvas, create_canvas_for, add_shape_to, clear_canvas, shape_from_area,
 		canvas_style, hex_to_decimal, css3color, is_image_loaded, options_from_area;
 
-	has_VML = document.namespaces;
 	has_canvas = !!document.createElement('canvas').getContext;
+
+	// VML: more complex
+	has_VML = (function() {
+		var a = document.createElement('div');
+		a.innerHTML = '<v:shape id="vml_flag1" adj="1" />';
+		var b = a.firstChild;
+		b.style.behavior = "url(#default#VML)";
+		return b ? typeof b.adj == "object": true;
+	})();
 
 	if(!(has_canvas || has_VML)) {
 		$.fn.maphilight = function() { return this; };
@@ -164,7 +172,7 @@
 	
 	is_image_loaded = function(img) {
 		if(!img.complete) { return false; } // IE
-		if(typeof img.naturalWidth != "undefined" && img.naturalWidth == 0) { return false; } // Others
+		if(typeof img.naturalWidth != "undefined" && img.naturalWidth === 0) { return false; } // Others
 		return true;
 	};
 
@@ -180,7 +188,7 @@
 	$.fn.maphilight = function(opts) {
 		opts = $.extend({}, $.fn.maphilight.defaults, opts);
 		
-		if(!has_canvas && $.browser.msie && !ie_hax_done) {
+		if(!has_canvas && !ie_hax_done) {
 			document.namespaces.add("v", "urn:schemas-microsoft-com:vml");
 			var style = document.createStyleSheet();
 			var shapes = ['shape','rect', 'oval', 'circ', 'fill', 'stroke', 'imagedata', 'group','textbox'];
@@ -209,9 +217,13 @@
 			// So use raw getAttribute instead.
 			usemap = img.get(0).getAttribute('usemap');
 
+			if (!usemap) {
+				return
+			}
+
 			map = $('map[name="'+usemap.substr(1)+'"]');
 
-			if(!(img.is('img') && usemap && map.size() > 0)) {
+			if(!(img.is('img,input[type="image"]') && usemap && map.size() > 0)) {
 				return;
 			}
 
@@ -240,7 +252,7 @@
 				}
 			}
 			img.before(wrap).css('opacity', 0).css(canvas_style).remove();
-			if($.browser.msie) { img.css('filter', 'Alpha(opacity=0)'); }
+			if(has_VML) { img.css('filter', 'Alpha(opacity=0)'); }
 			wrap.append(img);
 			
 			canvas = create_canvas_for(this);
@@ -261,8 +273,8 @@
 					if(area_options.groupBy) {
 						var areas;
 						// two ways groupBy might work; attribute and selector
-						if(/^[a-zA-Z][-a-zA-Z]+$/.test(area_options.groupBy)) {
-							areas = map.find('area['+area_options.groupBy+'="'+$(this).attr(area_options.groupBy)+'"]')
+						if(/^[a-zA-Z][\-a-zA-Z]+$/.test(area_options.groupBy)) {
+							areas = map.find('area['+area_options.groupBy+'="'+$(this).attr(area_options.groupBy)+'"]');
 						} else {
 							areas = map.find(area_options.groupBy);
 						}
@@ -288,7 +300,7 @@
 				// Check for areas with alwaysOn set. These are added to a *second* canvas,
 				// which will get around flickering during fading.
 				if(canvas_always) {
-					clear_canvas(canvas_always)
+					clear_canvas(canvas_always);
 				}
 				if(!has_canvas) {
 					$(canvas).empty();
@@ -298,10 +310,10 @@
 					area_options = options_from_area(this, options);
 					if(area_options.alwaysOn) {
 						if(!canvas_always && has_canvas) {
-							canvas_always = create_canvas_for(img.get());
+							canvas_always = create_canvas_for(img[0]);
 							$(canvas_always).css(canvas_style);
-							canvas_always.width = img.width();
-							canvas_always.height = img.height();
+							canvas_always.width = img[0].width;
+							canvas_always.height = img[0].height;
 							img.before(canvas_always);
 						}
 						area_options.fade = area_options.alwaysOnFade; // alwaysOn shouldn't fade in initially
@@ -318,6 +330,12 @@
 			$(map).trigger('alwaysOn.maphilight').find('area[coords]')
 				.bind('mouseover.maphilight', mouseover)
 				.bind('mouseout.maphilight', function(e) { clear_canvas(canvas); });
+
+			amplify.subscribe('clearCanvas',function() {
+				console.log('Clear triggered');
+				console.log(canvas);
+				clear_canvas(canvas);
+			});
 			
 			img.before(canvas); // if we put this after, the mouseover events wouldn't fire.
 			

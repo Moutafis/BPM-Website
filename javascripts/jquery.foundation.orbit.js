@@ -23,7 +23,7 @@
 			animation                : 'horizontal-push',     // fade, horizontal-slide, vertical-slide, horizontal-push, vertical-push
 			animationSpeed           : 600,              // how fast animations are
 			timer                    : true,                      // display timer?
-			advanceSpeed             : 4000,               // if timer is enabled, time between transitions
+			advanceSpeed             : 6000,               // if timer is enabled, time between transitions
 			pauseOnHover             : false,              // if you hover pauses the slider
 			startClockOnMouseOut     : false,      // if clock should start on MouseOut
 			startClockOnMouseOutAfter: 1000,  // how long after MouseOut should the timer start again

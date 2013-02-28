@@ -7,94 +7,118 @@
 var jcl = {
 
 	// Ajax Handler
-	dataManager       : null,
+	dataManager        : null,
 
 	// Base Auth
-	makeBaseAuth      : null,
+	makeBaseAuth       : null,
 
 	// Username
-	username: null,
+	username           : null,
 
 	// Password
-	password : null,
+	password           : null,
 
 	// Project ID
-	projectID         : null,
+	projectID          : null,
 
 	// Subscriber Code
-	subscriberCode    : null,
+	subscriberCode     : null,
 
 	// Auth Token
-	authToken         : null,
+	authToken          : null,
 
 	// Query String
-	queryString       : null,
+	queryString        : null,
 
 	// Auth Url
-	authUrl           : null,
+	authUrl            : null,
 
 	// Listings url
-	listingsUrl       : null,
+	listingsUrl        : null,
 
 	// Level object
-	levels            : null,
+	levels             : null,
 
 	// Total levels
-	totalLevels       : null,
+	totalLevels        : null,
 
 	// Default Level
-	findDefaultLevel  : null,
+	findActiveLevel   : null,
+
+	// Return active Level
+	returnActiveLevel : null,
+
+	// First Run
+	firstRun : null,
 
 	// Active level object
-	activeLevel       : null,
+	activeLevel        : null,
 
 	// Active level label
-	activeLevelLabel  : null,
+	activeLevelLabel   : null,
 
 	// Process Active Level
-	processActiveLevel: null,
+	processActiveLevel : null,
 
 	// Listings Object
-	listings          : null,
+	listings           : null,
 
 	// Process Listings
-	processListings   : null,
+	processListings    : null,
 
 	// Processed Listings
-	processedListings : null,
+	processedListings  : null,
 
 	// Active listing
-	activeListing     : null,
+	activeListing      : null,
 
 	// Gallery container
-	galleryContainer  : null,
+	galleryContainer   : null,
 
 	// Gallery Markup
-	galleryMarkup     : null,
+	galleryMarkup      : null,
 
 	// Append HTML to DOM
-	appendHtml : null,
+	appendHtml         : null,
 
 	// Preload Images
-	preloadImages     : null,
+	preloadImages      : null,
 
 	// Cached gallery images
-	imageCache        : null,
+	imageCache         : null,
 
 	// Reference to the Orbit object
-	orbit             : null,
+	orbit              : null,
 
 	// Floorplate image path
-	floorplatePath : null,
+	floorplatePath     : null,
 
 	// Floorplate image container
-	floorplateContainer : null,
+	floorplateContainer: null,
+
+	// Level Coordinates
+	levelCoords        : null,
+
+	// Cache the area tags
+	areaCache : null,
+
+	// maphilight options
+	mapHilight         : null,
+
+	// Clear the maphilight canvas
+	clearCanvas        : null,
+
+	// Apply Image Map
+	applyImageMap      : null,
+
+	// Sync slide image with selected area
+	syncSlides         : null,
 
 	// Show Loading screen
-	showLoading       : null,
+	showLoading        : null,
 
 	// Hide Loading screen
-	hideLoading       : null
+	hideLoading        : null
 
 };
 
@@ -125,6 +149,14 @@ jcl.galleryContainer = '#featured';
 jcl.floorplatePath = 'images/floorplates/';
 
 jcl.floorplateContainer = '#floorplate';
+
+jcl.firstRun = true; // We will set this to false after first run
+
+jcl.mapHilight = {
+	invisibleHilight : '{"stroke":"false","strokeOpacity":"0","fillColor":"000000","fillOpacity":0,"alwaysOn":true}',
+	lightHilight: '{"stroke":"false","strokeOpacity":"0","fillColor":"ffffff","fillOpacity":0.8,"alwaysOn":true}',
+	greenHilight: '{"stroke":"false","strokeOpacity":"0","fillColor":"99da80","fillOpacity":0.5,"alwaysOn":true}'
+};
 
 /*
  ================
@@ -181,6 +213,7 @@ jcl.dataManager = function ( options ) {
  ================================
  */
 jcl.makeBaseAuth = function ( username, password ) {
+	console.log('Application : jcl.makeBaseAuth');
 	var tok = username + ':' + password;
 	var hash = Base64.encode( tok );
 	return "Basic " + hash;
@@ -193,6 +226,7 @@ jcl.makeBaseAuth = function ( username, password ) {
  This returns a properly structured collection grouped according to their levels
  */
 jcl.processListings = function ( listings ) {
+	console.log('Application : jcl.processListings');
 	var levelArray = ['level1', 'level2', 'level3', 'level4', 'level5', 'level6', 'level7'];
 	var levelObject = {};
 	var myCount = 0;
@@ -214,15 +248,22 @@ jcl.processListings = function ( listings ) {
 
 /*
  ======================
- Find the default level
+ Find the Active level
  ======================
- This returns the first level from the collection to have available units
+ This returns the first level from the collection on firstRun to have available units
  */
-jcl.findDefaultLevel = function ( levelObject ) {
-	for (var x in levelObject) {
-		if (levelObject.hasOwnProperty( x )) {
-			if (levelObject[x].length > 1) {
-				return levelObject[x];
+jcl.findActiveLevel = function ( levelObject,levelName ) {
+	console.log('Application : jcl.findActiveLevel');
+	if(levelName) {
+		return levelObject[levelName];
+	}
+	else {
+		for (var x in levelObject) {
+			if (levelObject.hasOwnProperty( x )) {
+				if (levelObject[x].length > 1) {
+					jcl.firstRun = false;
+					return levelObject[x];
+				}
 			}
 		}
 	}
@@ -239,13 +280,33 @@ jcl.findDefaultLevel = function ( levelObject ) {
  3. Create the Image Map
  */
 jcl.processActiveLevel = function ( activeLevel ) {
+	console.log('Application : jcl.processActiveLevel');
 	var galleryImages = fetchGalleryImages( activeLevel );
 	var gallerySrc = galleryImages.gallerySrc;
+	jcl.levelCoords = galleryImages.levelCoords;
 	jcl.preloadImages( gallerySrc );
 	jcl.galleryMarkup = galleryImages.galleryHtml.join( " " );
 
+	console.log( 'Level Coords' );
+	console.log( jcl.levelCoords );
+	jcl.applyImageMap( jcl.levelCoords );
+
 	// Set the floorplate image here
-	setFloorplate(jcl.floorplatePath,jcl.activeLevelLabel,jcl.floorplateContainer);
+	setFloorplate( jcl.floorplatePath, jcl.activeLevelLabel, jcl.floorplateContainer );
+};
+
+
+/*
+ ===============
+ Apply image map
+ ===============
+ */
+jcl.applyImageMap = function ( levelCoords ) {
+	console.log('Application : jcl.applyImageMap');
+	for (var i = 0; i < levelCoords.length; i++) {
+		$( '#levelMap' ).append( "<area shape='poly' coords='" + levelCoords[i].coords + "'id='lot"+ levelCoords[i].lotNo +"' data-lotNo='" + levelCoords[i].lotNo + "' data-index='" + levelCoords[i].index + "' href='#'>" );
+	}
+	jcl.areaCache = $('area');
 };
 
 
@@ -255,6 +316,7 @@ jcl.processActiveLevel = function ( activeLevel ) {
  ======================
  */
 jcl.preloadImages = function ( imgArray ) {
+	console.log('Application : jcl.preloadImages');
 	jcl.imageCache = [];
 	var count = 0;
 	for (var i = 0; i < imgArray.length; i++) {
@@ -264,7 +326,7 @@ jcl.preloadImages = function ( imgArray ) {
 		$( imageObject ).on( 'load', function () {
 			++count;
 			if (count >= imgArray.length) {
-				console.log('imgLoadComplete fired');
+				console.log( 'imgLoadComplete fired' );
 				amplify.publish( 'imgLoadComplete' );
 			}
 			else {
@@ -280,69 +342,40 @@ jcl.preloadImages = function ( imgArray ) {
  Apppend Html
  ============
  */
- jcl.appendHtml = function(target,html) {
-	 $(target ).append(html);
- };
+jcl.appendHtml = function ( target, html ) {
+	console.log('Application : jcl.appendHtml');
+	$( target ).append( html );
+};
 
-
-
-
-
-/* ############## PRIVATE METHODS ############## */
 
 /*
- =================
- Construct Gallery
- =================
- 1. Takes the activeLevel object as argument
- 2. Loops through the listings in the level and extracts the floorplan images
- 3. Pushes the images into a global cache
- 4. Constructs an Img element for each image with the data-level and data-lotNo attributes for future reference.
- 5. returns the HTML markup for gallery and the gallery images as an object
+ ==========
+ syncSlides
+ ==========
  */
-function fetchGalleryImages( activeLevel ) {
-	var imgHtmlArray = [];
-	var imgSrcArray = [];
-	var imgHtml = "";
-	var activeLevelLabel = 'level' + activeLevel[0];
-	jcl.activeLevelLabel = activeLevelLabel;
-	var lotNo = "";
-	for (var i = 0; i < activeLevel.length; i++) {
-		if ((typeof activeLevel[i]) === 'object') {
-			if (activeLevel[i].Images) {
-				if (activeLevel[i].Images.length) {
-					for (var j = 0; j < activeLevel[i].Images.length; j++) {
-						if (activeLevel[i].Images[j].ImageSize == 2) {
-							lotNo = activeLevel[i].Property.LotNo;
-							imgHtml = "<img src='" + activeLevel[i].Images[j].URL + "' data-level='" + activeLevelLabel + "' data-lotNo='" + lotNo + "' />"
-							imgHtmlArray.push( imgHtml );
-							imgSrcArray.push( activeLevel[i].Images[j].URL );
-						}
-					}
-				}
-			}
-		}
+jcl.syncSlides = function ( index ) {
+	console.log('Application : jcl.syncSlides');
+	if (jcl.orbit) {
+		jcl.orbit.shift( parseInt( index, 10 ) );
+		jcl.orbit.stopClock();
 	}
-	return {
-		galleryHtml: imgHtmlArray,
-		gallerySrc : imgSrcArray
-	}
-}
+};
 
 
 
 /*
- =====================================================================
- Set the level floorplate once we have a reference to the active level
- =====================================================================
- 1. Taks the path to flooplate image, level number and the container that holds it as arguments
+ ============
+ clear canvas
+ ============
  */
-function setFloorplate(path,level,container) {
-	console.log(container);
-	console.log(path+level+'.png');
-	$(container ).find('img' ).attr('src',path+level+'.png');
-}
-
+jcl.clearCanvas = function (canvas) {
+	if(canvas.length) {
+		$(canvas ).each(function() {
+			var ctx = this.getContext('2d');
+			ctx.clearRect(0,0,this.width,this.height);
+		});
+	}
+};
 
 /*
  ==============================================
@@ -366,6 +399,71 @@ jcl.showLoading = function ( el ) {
 jcl.hideLoading = function ( el ) {
 	$( el ).children().css( 'visibility', 'visible' ).remove( '#loading' );
 };
+
+
+/* ############## PRIVATE METHODS ############## */
+
+/*
+ =================
+ Construct Gallery
+ =================
+ 1. Takes the activeLevel object as argument
+ 2. Loops through the listings in the level and extracts the floorplan images
+ 3. Pushes the images into a global cache
+ 4. Constructs an Img element for each image with the data-level and data-lotNo attributes for future reference.
+ 5. returns the HTML markup for gallery and the gallery images as an object
+ */
+function fetchGalleryImages( activeLevel ) {
+	var imgHtmlArray = [];
+	var imgSrcArray = [];
+	var levelCoords = [];
+	var imgHtml = "";
+	var activeLevelLabel = 'level' + activeLevel[0];
+	jcl.activeLevelLabel = activeLevelLabel;
+	var lotNo = "";
+	for (var i = 0; i < activeLevel.length; i++) {
+		if ((typeof activeLevel[i]) === 'object') {
+			lotNo = activeLevel[i].Property.LotNo;
+			if (activeLevel[i].Images) {
+				if (activeLevel[i].Images.length) {
+					for (var j = 0; j < activeLevel[i].Images.length; j++) {
+						if (activeLevel[i].Images[j].ImageSize == 2) {
+							imgHtml = "<img src='" + activeLevel[i].Images[j].URL + "' data-level='" + activeLevelLabel + "' data-lotNo='" + lotNo + "' />"
+							imgHtmlArray.push( imgHtml );
+							imgSrcArray.push( activeLevel[i].Images[j].URL );
+						}
+					}
+				}
+			}
+			if (activeLevel[i].Property.HotspotsMediumResolution) {
+				levelCoords.push( {
+					index : i - 1,                                                   // i always starts from 0 because activeLevel[0] is not an object
+					lotNo : lotNo,
+					coords: activeLevel[i].Property.HotspotsMediumResolution
+				} );
+			}
+		}
+	}
+	return {
+		galleryHtml: imgHtmlArray,
+		gallerySrc : imgSrcArray,
+		levelCoords: levelCoords
+	}
+}
+
+
+/*
+ =====================================================================
+ Set the level floorplate once we have a reference to the active level
+ =====================================================================
+ 1. Taks the path to flooplate image, level number and the container that holds it as arguments
+ */
+function setFloorplate( path, level, container ) {
+	console.log( container );
+	console.log( path + level + '.png' );
+	$( container ).find( 'img' ).attr( 'src', path + level + '.png' );
+}
+
 
 
 

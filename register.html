@@ -1,0 +1,226 @@
+<!DOCTYPE html>
+
+<!-- paulirish.com/2008/conditional-stylesheets-vs-css-hacks-answer-neither/ -->
+<!--[if IE 8]>
+<html class="no-js lt-ie9" lang="en"> <![endif]-->
+<!--[if gt IE 8]><!-->
+<html class="no-js" lang="en"> <!--<![endif]-->
+<head>
+    <meta charset="utf-8"/>
+
+    <!-- Set the viewport width to device width for mobile -->
+    <meta name="viewport" content="width=device-width"/>
+
+    <title>Welcome to Foundation</title>
+
+    <!-- Included CSS Files (Uncompressed) -->
+    <!--
+    <link rel="stylesheet" href="stylesheets/foundation.css">
+    -->
+    <script type="text/javascript" src="javascripts/jquery-1.7.2.min.js"></script>
+    <script type="text/javascript" src="http://code.jquery.com/ui/1.10.1/jquery-ui.js"></script>
+
+    <!-- Included CSS Files (Compressed) -->
+    <link rel="stylesheet" href="stylesheets/foundation.min.css">
+    <link href="http://code.jquery.com/ui/1.10.1/themes/base/jquery-ui.css" rel="stylesheet"/>
+    <link rel="stylesheet" href="stylesheets/app.css">
+
+    <script src="javascripts/foundation.min.js"></script>
+    <script src="javascripts/modernizr.foundation.js"></script>
+    <script src="javascripts/custom.js"></script>
+</head>
+<body id="bg03">
+
+<div class="row">
+    <div class="twelve columns noPadding">
+        <a href="home.html">
+            <div class="logoHeader">
+                <h1>Collins & Queen - Essendon</h1>
+
+                <h2>Connection - Perception - Progression - Reflection</h2>
+            </div>
+        </a>
+        <ul class="nav-bar">
+            <li><a href="apartments.html">APARTMENTS</a></li>
+            <li><a href="design.html">DESIGN</a></li>
+            <li><a href="location.html">LOCATION</a></li>
+            <li><a href="lifestyle.html">LIFESTYLE</a></li>
+            <li class="active"><a href="register.html">REGISTER</a></li>
+            <li><a href="latest.html">C&Q LATEST</a></li>
+            <li><a href="contact.html">CONTACT</a></li>
+            <li><a href="aboutBPM.html">ABOUT BPM</a></li>
+        </ul>
+    </div>
+</div>
+
+<div class="row">
+
+    <div class="twelve columns noPadding">
+        <div class="interest-form">
+            <form id="register" action="submit.php">
+
+                <div class="row">
+                    <div class="two columns"><label for="name">Name*</label></div>
+                    <div class="five columns"><input type="text" class="requiredField first name" id="name"
+                                                     name="name"/></div>
+                    <div class="five columns"><input type="text" class="requiredField last name" id="lastname"
+                                                     name="lastname"/></div>
+                </div>
+                <div class="row">
+                    <div class="two columns"><label for="email">Email*</label></div>
+                    <div class="ten columns"><input type="email" name="email" id="email" class="requiredField email"/>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="two columns"><label for="phone">Phone*</label></div>
+                    <div class="ten columns">
+                        <input type="text" name="phone" id="phone" class="requiredField"/>
+
+                        <div class="buttonset samerow">
+                            <div class="row">
+                                <div class="four columns">
+                                    <input type="radio" id="mobile" name="phoneradio" value="Mobile"
+                                           class="requiredField"/><label
+                                        for="mobile" class="caps third">Mobile</label>
+                                </div>
+                                <div class="four columns">
+                                    <input type="radio" id="home" name="phoneradio" value="Home"
+                                           class="requiredField"/><label for="home" class="caps third">Home</label>
+                                </div>
+                                <div class="four columns noPadding-right">
+                                    <input type="radio" id="work" name="phoneradio" value="Work"
+                                           class="requiredField"/><label for="work" class="caps third last">Work</label>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="two columns"><label for="postcode">Postcode*</label></div>
+                    <div class="ten columns"><input type="text" name="postcode" id="postcode" class="requiredField"/>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="two columns"><span class="radiolabel">Bedrooms*</span></div>
+                    <div class="ten columns">
+                        <div class="buttonset">
+                            <div class="row">
+                                <div class="four columns">
+                                    <input type="checkbox" id="bed1" name="bedroomsradio[]" value="1"
+                                           class="requiredField"/><label for="bed1" class="third">1</label>
+                                </div>
+                                <div class="four columns">
+                                    <input type="checkbox" id="bed2" name="bedroomsradio[]" value="2"
+                                           class="requiredField"/><label for="bed2" class="third">2</label>
+                                </div>
+                                <div class="four columns">
+                                    &nbsp;
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="two columns"><span class="radiolabel">My Budget*</span></div>
+                    <div class="ten columns">
+                        <div class="buttonset">
+                            <div class="row">
+                                <div class="four columns">
+                                    <input type="checkbox" id="budget400" name="budgetradio[]" value="400k"
+                                           class="requiredField"/><label for="budget400" class="third">400k</label>
+                                </div>
+                                <div class="four columns">
+                                    <input type="checkbox" id="budget400-500" name="budgetradio[]" value="400-500k"
+                                           class="requiredField"/><label for="budget400-500"
+                                                                         class="third">400-500k</label>
+                                </div>
+                                <div class="four columns noPadding-right">
+                                    <input type="checkbox" id="budget500-plus" name="budgetradio[]" value="500k+"
+                                           class="requiredField"/><label for="budget500-plus" class="third last">OVER
+                                    500k</label>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="two columns"><span class="radiolabel">I am an*</span></div>
+                    <div class="ten columns">
+                        <div class="buttonset">
+                            <div class="row">
+                                <div class="four columns">
+                                    <input type="radio" id="investor" name="iamanradio" value="Investor"
+                                           class="requiredField"/>
+                                    <label for="investor" class="half caps">Investor</label>
+                                </div>
+                                <div class="four columns">
+                                    <input type="radio" id="owner-occupier" name="iamanradio" value="Owner/Occupier"
+                                           class="requiredField"/>
+                                    <label for="owner-occupier" class="half caps">Owner Occupier</label>
+                                </div>
+                                <div class="four columns">&nbsp;</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="two columns"><label for="comments">Comments</label></div>
+                    <div class="ten columns"><textarea name="comments" id="comments"></textarea></div>
+                </div>
+                <div class="row">
+                    <div class="two columns">&nbsp;</div>
+                    <div class="ten columns">
+                        <select name="hearabout">
+                            <option>How did you hear about the project?</option>
+                            <option>Radio</option>
+                            <option>TV</option>
+                            <option>realestate.com.au</option>
+                            <option>domain.com.au</option>
+                            <option>The Herald Sun</option>
+                            <option>Local Paper</option>
+                            <option>The Age</option>
+                            <option>Word of Mouth</option>
+                            <option>On Site Signage</option>
+                            <option>Google</option>
+                            <option>Billboard</option>
+                            <option>bpmcorp.com.au</option>
+                        </select>
+
+                        <p class="mandatory">*Mandatory Field</p>
+                        <input type="submit" value="Submit" class="button"/>
+                    </div>
+                </div>
+
+
+            </form>
+
+        </div>
+    </div>
+
+    <div class="twelve columns noPadding">
+        <hr class="hr2"/>
+    </div>
+</div>
+
+<div class="row">
+    <div class="footer">
+        <h5 class="noMargin">40 COLLINS STREET ESSENDON / DISPLAY SUITE OPEN 12PM - 3PM MONDAY TO FRIDAY & 12PM - 5PM
+            SATURDAY & SUNDAY</h5>
+
+        <div class="footerLogo"></div>
+    </div>
+</div>
+
+
+<!-- Included JS Files (Uncompressed) -->
+
+
+<!-- Included JS Files (Compressed) -->
+
+
+<!-- Initialize JS Plugins -->
+<script src="javascripts/app.js"></script>
+
+
+</body>
+</html>

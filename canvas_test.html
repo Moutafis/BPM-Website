@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+
+<!-- paulirish.com/2008/conditional-stylesheets-vs-css-hacks-answer-neither/ -->
+<!--[if IE 8]>
+<html class="no-js lt-ie9" lang="en"> <![endif]-->
+<!--[if gt IE 8]><!-->
+<html class="no-js" lang="en"> <!--<![endif]-->
+<head>
+    <meta charset="utf-8"/>
+
+    <!-- Set the viewport width to device width for mobile -->
+    <meta name="viewport" content="width=device-width"/>
+
+    <title>Welcome to Foundation</title>
+
+    <!-- Included CSS Files (Uncompressed) -->
+    <!--
+    <link rel="stylesheet" href="stylesheets/foundation.css">
+    -->
+
+    <!-- Included CSS Files (Compressed) -->
+    <link rel="stylesheet" href="stylesheets/foundation.min.css">
+    <link rel="stylesheet" href="stylesheets/app.css">
+    <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.6.3/jquery.min.js"></script>
+    <script src="javascripts/amplify.js"></script>
+    <script src="javascripts/jquery.maphilight_latest.js"></script>
+
+    <style>
+        #floorplate img {
+            width: 940px;
+            height: 498px;
+        }
+    </style>
+
+</head>
+<body>
+
+<div class="row">
+    <div class="twelve columns noPadding">
+        <div class="panel noPadding">
+            <div id="floorplate">
+                <img src="images/floorplates/level4.png" usemap="#levelMap" class="levelMap" width="940" height="498">
+            </div>
+        </div>
+    </div>
+</div>
+
+<map id="levelMap" name="levelMap">
+
+    <area id="area1" shape="poly" coords="316,56,334,56,354,84,372,85,373,157,384,159,384,174,268,175,268,151,314,149,316,56" data-lotno="404" data-index="0" href="#"
+          data-maphilight="{&quot;stroke&quot;:&quot;false&quot;,&quot;strokeOpacity&quot;:&quot;0&quot;,&quot;fillColor&quot;:&quot;99da80&quot;,&quot;fillOpacity&quot;:0.5,&quot;alwaysOn&quot;:true}">
+    <area id="area2" shape="poly" coords="389,155,378,154,377,83,454,84,454,175,410,174,410,155,402,153,402,157,389,155" data-lotno="405" data-index="1" href="#">
+    <area id="area3" shape="poly" coords="460,84,537,85,630,219,525,219,526,222,510,221,498,219,496,175,461,174,460,84" data-lotno="406" data-index="2" href="#">
+    <area id="area4" shape="poly" coords="624,252,648,252,650,247,666,247,666,252,736,253,825,382,625,385,624,252" data-lotno="407" data-index="3" href="#"
+          data-maphilight="{&quot;stroke&quot;:&quot;false&quot;,&quot;strokeOpacity&quot;:&quot;0&quot;,&quot;fillColor&quot;:&quot;99da80&quot;,&quot;fillOpacity&quot;:0.5,&quot;alwaysOn&quot;:true}">
+    <area id="area5" shape="poly" coords="470,267,574,267,574,252,578,249,592,249,594,253,595,266,618,267,620,385,470,389,470,267" data-lotno="408" data-index="4" href="#"
+          data-maphilight="{&quot;stroke&quot;:&quot;false&quot;,&quot;strokeOpacity&quot;:&quot;0&quot;,&quot;fillColor&quot;:&quot;99da80&quot;,&quot;fillOpacity&quot;:0.5,&quot;alwaysOn&quot;:true}">
+    <area id="area6" shape="poly" coords="316,266,422,263,436,263,465,266,465,388,316,391,316,266" data-lotno="409" data-index="5" href="#"
+          data-maphilight="{&quot;stroke&quot;:&quot;false&quot;,&quot;strokeOpacity&quot;:&quot;0&quot;,&quot;fillColor&quot;:&quot;99da80&quot;,&quot;fillOpacity&quot;:0.5,&quot;alwaysOn&quot;:true}">
+    <area id="area7" shape="poly" coords="126,247,125,251,206,252,206,394,110,396,110,249,126,247" data-lotno="411" data-index="6" href="#"
+          data-maphilight="{&quot;stroke&quot;:&quot;false&quot;,&quot;strokeOpacity&quot;:&quot;0&quot;,&quot;fillColor&quot;:&quot;99da80&quot;,&quot;fillOpacity&quot;:0.5,&quot;alwaysOn&quot;:true}">
+</map>
+
+<!-- Initialize JS Plugins -->
+<!--<script src="javascripts/functions/sandbox.js"></script>-->
+<!--<script src="javascripts/functions/functions.js"></script>-->
+
+<script>
+    var area = $('area');
+    $('.levelMap' ).maphilight();
+
+    $('body' ).click(function() {
+        $('area' ).eq(1 ).attr('data-maphilight','{"stroke":"false","strokeOpacity":"0","fillColor":"000000","fillOpacity":0.6,"alwaysOn":true}');
+        $('area' ).eq(0 ).attr('data-maphilight','{"stroke":"false","strokeOpacity":"0","fillColor":"ff0000","fillOpacity":0.6,"alwaysOn":true}');
+        $('.levelMap' ).maphilight();
+    });
+</script>
+</body>
+</html>
