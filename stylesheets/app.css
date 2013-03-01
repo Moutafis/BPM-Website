@@ -175,7 +175,12 @@ hr {
 
 @media only screen and (min-width: 767px) {
     .leftMenuBar {
-        height: 500px;
+        height: 397px;
+        box-sizing: border-box;
+    }
+
+    .designLeftMenuBar {
+        height: 594px;
         box-sizing: border-box;
     }
 }
@@ -817,6 +822,10 @@ button.ui-button::-moz-focus-inner {
 
 .noPadding-right {
     padding-right: 0px !important;
+}
+
+.hide-for-small, .show-for-medium, .hide-for-medium-down, .show-for-large, .show-for-large-up, .show-for-xlarge {
+    display: block !important;
 }
 
 @media screen and (min-width: 575px) and (max-width: 767px) {
