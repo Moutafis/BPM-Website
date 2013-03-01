@@ -77,13 +77,13 @@ p {
     margin: 40px 0 40px 0;
     font-size: 1.2em;
     font-family: Neubau-Bold, arial, sans-serif;
-    text-transform: uppercase;
+    TEXT-TRANSFORM: UPPERCASE;
     line-height: 1.2em;
 }
 
 h1, h2, h3, h4, h5, h6 {
     font-family: Neubau-Bold, arial, sans-serif;
-    text-transform: uppercase;
+    TEXT-TRANSFORM: UPPERCASE;
 }
 
 a {
@@ -133,7 +133,7 @@ hr {
     color: #000000;
     font-size: 18px;
     font-family: Neubau-Bold, arial, sans-serif;
-    text-transform: uppercase;
+    TEXT-TRANSFORM: UPPERCASE;
 }
 
 .nav-bar > li > a:first-child {
@@ -213,12 +213,12 @@ hr {
 
 .orbit-wrapper .slider-nav span.right {
     margin-right: 10px;
-    background: url('../images/foundation/orbit/right-arrow-small.png');
+    background: url('../images/foundation/orbit/right-arrow-small.png') no-repeat;
 }
 
 .orbit-wrapper .slider-nav span.left {
     margin-left: 10px;
-    background: url('../images/foundation/orbit/left-arrow-small.png');
+    background: url('../images/foundation/orbit/left-arrow-small.png') no-repeat;
 }
 
 .apartments .orbit-wrapper .slider-nav span.right {
