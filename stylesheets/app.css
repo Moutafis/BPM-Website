@@ -1,11 +1,10 @@
-/* Artfully masterminded by ZURB  */
 
 /* -------------------------------------------------- 
-   Table of Contents
+   Website developed by Brightfox
 -----------------------------------------------------
-:: Shared Styles
-:: Page Name 1
-:: Page Name 2
+:: http://www.brightfox.com.au
+:: +61 7 3177 0505
+:: 2013
 */
 
 /* -----------------------------------------
@@ -27,25 +26,37 @@
     font-style: normal;
 }
 
+html, body
+{
+    height:100%;
+}
+
 body {
-    background: #f9e4bf;
     font-family: Neubau, arial, sans-serif;
 }
 
 #bg01 {
     background: #fdf2d2 url('images/bg_01.jpg') repeat-x 100% 100%;
+    background-attachment:fixed;
+    background-position:bottom;
 }
 
 #bg02 {
     background: #feeacc url('images/bg_02.jpg') repeat-x 100% 100%;
+    background-attachment:fixed;
+    background-position:bottom;
 }
 
 #bg03 {
     background: #f9eace url('images/bg_03.jpg') repeat-x 100% 100%;
+    background-attachment:fixed;
+    background-position:bottom;
 }
 
 #bg04 {
     background: #ededce url('images/bg_04.jpg') repeat-x 100% 100%;
+    background-attachment:fixed;
+    background-position:bottom;
 }
 
 #splash {
@@ -53,9 +64,35 @@ body {
     background-size: cover;
 }
 
+p {
+    font-family: inherit;
+    font-weight: normal;
+    font-size: 1.1em;
+    line-height: 1.2em;
+    margin-bottom: none;
+}
+
+.bodyCopy {
+    text-align: center;
+    margin: 40px 0 40px 0;
+    font-size: 1.2em;
+    font-family: Neubau-Bold, arial, sans-serif;
+    text-transform: uppercase;
+    line-height: 1.2em;
+}
+
 h1, h2, h3, h4, h5, h6 {
     font-family: Neubau-Bold, arial, sans-serif;
-    TEXT-TRANSFORM: UPPERCASE;
+    text-transform: uppercase;
+}
+
+a {
+    color:#000000;
+}
+
+a:hover {
+    color:#000000;
+    text-decoration:underline;
 }
 
 hr {
@@ -84,6 +121,7 @@ hr {
     height: 60px;
     line-height: 60px;
     box-shadow:none;
+    width: 12.5%;
 }
 
 .nav-bar > li:nth-child(6), .nav-bar > li:last-child {
@@ -95,7 +133,7 @@ hr {
     color: #000000;
     font-size: 18px;
     font-family: Neubau-Bold, arial, sans-serif;
-    TEXT-TRANSFORM: UPPERCASE;
+    text-transform: uppercase;
 }
 
 .nav-bar > li > a:first-child {
@@ -290,7 +328,6 @@ hr {
 
 .interest-form {
     width: 100%; /* 816 */
-    background: url(/images/backgrounds/white-93-for-816x477.png);
     margin: 0px;
     padding: 0px;
     float: left;
@@ -791,6 +828,10 @@ button.ui-button::-moz-focus-inner {
     .noPadding-right {
         padding-right: 6px !important;
     }
+
+    .nav-bar > li {
+        width: 100%;
+    }
 }
 
 @media screen and (orientation: portrait) {
@@ -807,6 +848,10 @@ button.ui-button::-moz-focus-inner {
     .noPadding-right {
         padding-right: 6px !important;
     }
+
+    .nav-bar > li {
+        width: 100%;
+    }
 }
 
 @media screen and (orientation: portrait) and (max-width: 767px) {
@@ -821,6 +866,10 @@ button.ui-button::-moz-focus-inner {
 
     .noPadding-right {
         padding-right: 6px !important;
+    }
+
+    .nav-bar > li {
+        width: 100%;
     }
 }
 
@@ -862,5 +911,9 @@ button.ui-button::-moz-focus-inner {
 
     .noPadding-right {
         padding-right: 6px !important;
+    }
+
+    .nav-bar > li {
+        width: 100%;
     }
 }
