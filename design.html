@@ -11,7 +11,7 @@
     <!-- Set the viewport width to device width for mobile -->
     <meta name="viewport" content="width=device-width"/>
 
-    <title>Welcome to Foundation</title>
+    <title>Collins and Queen Essendon</title>
 
     <link rel="stylesheet" href="stylesheets/foundation.min.css">
     <link rel="stylesheet" href="stylesheets/app.css">
@@ -25,8 +25,20 @@
     <script src="javascripts/base64-encoder.js"></script>
 
     <style>
-        #featured img {
-            /*display: none;*/
+        #designGallery {
+            display: none;
+        }
+
+        #designGallery.active {
+            display: block;
+        }
+
+        #designCopy {
+            display: none;
+        }
+
+        #designCopy.active {
+            display: block;
         }
     </style>
 </head>
@@ -76,7 +88,19 @@
         </div>
     </div>
     <div class="nine columns noPadding">
-        <div class="panel noMargin noPadding">
+        <div id="designCopy" class="row active">
+            <div class="seven columns">
+                <div class="bodyCopy">
+                    <p>ARCHITECTURE</p>
+                    <p>THE BUILDING ARTICULATION DRAWS ON THE CONTRAST BETWEEN FORM AND MATERIALITY, EXPRESSING A LEGIBLE BALANCE BETWEEN SLICK AND RAW, ROUGH AND REFINED, URBAN AND SOPHISTICATED. </p>
+                    <p>INTERIOR</p>
+                    <p>RUSTIC, NATURAL MATERIALS ARE FRAMED WITHIN SMOOTH, CONTRASTING EDGES CREATING AN ELEGANT INDUSTRIAL FEEL TO THE INTERIOR SPACES. IT IS THIS JUXTAPOSITION OF THE NATURAL AND THE MANMADE, THE SMOOTH AND THE RAW THAT ALLOWS YOU TO RELAX AND FEEL IN TOUCH WITH YOUR ENVIRONMENT.</p>
+                </div>
+            </div>
+            <div class="five columns"></div>
+        </div>
+
+        <div id="designGallery" class="panel noMargin noPadding">
             <div id="featured" class="noPadding">
                 <!--<img src="holder.js/800x600/text:Slide_1" alt="slide image">-->
                 <!--<img src="holder.js/800x600/text:Slide_2" alt="slide image">-->
@@ -107,7 +131,6 @@
 <script>
     $(window).load(function () {
         jcl.customGallery('.galleryControl');
-        $('.galleryControl').eq(0).trigger('click');
     });
 </script>
 
