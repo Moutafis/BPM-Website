@@ -866,6 +866,11 @@ button.ui-button::-moz-focus-inner {
     .nav-bar > li {
         width: 100%;
     }
+
+
+    .lifestyle {
+        padding-left: 60px;
+    }
 }
 
 @media screen and (orientation: portrait) and (max-width: 767px) {
@@ -930,4 +935,9 @@ button.ui-button::-moz-focus-inner {
     .nav-bar > li {
         width: 100%;
     }
+
+    .lifestyle {
+        padding-left: 40px;
+    }
+
 }
