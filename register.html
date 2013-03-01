@@ -125,18 +125,18 @@
                     <div class="two columns"><span class="radiolabel">My Budget*</span></div>
                     <div class="ten columns">
                         <div class="buttonset">
-                            <div class="row">
+                            <div class="row" id="budget">
                                 <div class="four columns">
-                                    <input type="checkbox" id="budget400" name="budgetradio[]" value="400k"
+                                    <input type="radio" id="budget400" name="budgetradio" value="300000-400000"
                                            class="requiredField"/><label for="budget400" class="third">400k</label>
                                 </div>
                                 <div class="four columns">
-                                    <input type="checkbox" id="budget400-500" name="budgetradio[]" value="400-500k"
+                                    <input type="radio" id="budget400-500" name="budgetradio" value="400000-500000"
                                            class="requiredField"/><label for="budget400-500"
                                                                          class="third">400-500k</label>
                                 </div>
                                 <div class="four columns noPadding-right">
-                                    <input type="checkbox" id="budget500-plus" name="budgetradio[]" value="500k+"
+                                    <input type="radio" id="budget500-plus" name="budgetradio" value="500000-600000"
                                            class="requiredField"/><label for="budget500-plus" class="third last">OVER
                                     500k</label>
                                 </div>
@@ -148,14 +148,14 @@
                     <div class="two columns"><span class="radiolabel">I am an*</span></div>
                     <div class="ten columns">
                         <div class="buttonset">
-                            <div class="row">
+                            <div class="row" id="purchase-reason">
                                 <div class="four columns">
-                                    <input type="radio" id="investor" name="iamanradio" value="Investor"
+                                    <input type="radio" id="investor" name="iamanradio" value="2"
                                            class="requiredField"/>
                                     <label for="investor" class="half caps">Investor</label>
                                 </div>
                                 <div class="four columns">
-                                    <input type="radio" id="owner-occupier" name="iamanradio" value="Owner/Occupier"
+                                    <input type="radio" id="owner-occupier" name="iamanradio" value="1"
                                            class="requiredField"/>
                                     <label for="owner-occupier" class="half caps">Owner Occupier</label>
                                 </div>

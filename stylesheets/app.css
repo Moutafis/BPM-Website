@@ -10,18 +10,23 @@
 /* -----------------------------------------
    Shared Styles
 ----------------------------------------- */
+
 @font-face {
-    font-family: 'Neubau-Bold';
-    src: url('neubausansbold.eot');
-    src: url('neubausansbold.eot?#iefix') format('embedded-opentype'), url('neubausansbold.woff') format('woff'), url('neubausansbold.ttf') format('truetype'), url('neubausansbold.svg#neubausansbold') format('svg');
+    font-family: 'Neubau';
+    src: url('neubausans-webfont.eot');
+    src: url('neubausans-webfont.eot?#iefix') format('embedded-opentype'),
+         url('neubausans-webfont.woff') format('woff'),
+         url('neubausans-webfont.ttf') format('truetype');
     font-weight: normal;
     font-style: normal;
 }
 
 @font-face {
-    font-family: 'Neubau';
-    src: url('neubausans.eot');
-    src: url('neubausans.eot?#iefix') format('embedded-opentype'), url('neubausans.woff') format('woff'), url('neubausans.ttf') format('truetype'), url('neubausans.svg#neubausans') format('svg');
+    font-family: 'Neubau-Bold';
+    src: url('neubausansbold-webfont.eot');
+    src: url('neubausansbold-webfont.eot?#iefix') format('embedded-opentype'),
+         url('neubausansbold-webfont.woff') format('woff'),
+         url('neubausansbold-webfont.ttf') format('truetype');
     font-weight: normal;
     font-style: normal;
 }
